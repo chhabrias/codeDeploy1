@@ -1,0 +1,23 @@
+version: 0.0
+os: linux
+
+files:
+  - source: myfolder/newpage.html
+    destination: /var/www/html
+
+permissions:
+  - object: /var/www/html
+    pattern: newpage.html
+    type:
+     - file
+
+hooks:
+  BeforeInstall:
+    - location: script/webserver-stop.sh
+#      timeout: 300
+#      runas: ec2-user 
+  AfterInstall:
+    - location: script/webserver-start.sh
+#      timeout: 300
+#      runas: ec2-user
+
